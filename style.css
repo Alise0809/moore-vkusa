@@ -1,4 +1,3 @@
-/* --- Общие стили --- */
 body {
     font-family: 'Inter', sans-serif;
     margin: 0;
@@ -11,8 +10,6 @@ body {
 }
 a { text-decoration: none; color: inherit; }
 ul { list-style: none; padding: 0; margin: 0; }
-
-/* --- Пузырьки --- */
 .bubbles-bg {
     position: fixed;
     top: 0;
@@ -36,8 +33,6 @@ ul { list-style: none; padding: 0; margin: 0; }
     50% { transform: translateY(-50vh) translateX(15px) scale(1.1); opacity: 0.85; }
     100% { transform: translateY(-110vh) translateX(-15px) scale(0.7); opacity: 0; }
 }
-
-/* --- Шапка (фон #FFD666) --- */
 header {
     background-color: #FFD666;
     padding: 20px 40px;
@@ -69,7 +64,6 @@ nav a:active {
     transform: translateY(1px);
     color: #BE9010;
 }
-
 .switch-container {
     display: flex;
     align-items: center;
@@ -86,7 +80,6 @@ nav a:active {
 }
 .switch-container:hover { background-color: rgba(0,0,0,0.05); }
 .switch-container:active { transform: scale(0.98); }
-
 .toggle-switch {
     width: 44px; height: 22px; background-color: #ccc; border-radius: 22px;
     position: relative; cursor: pointer; transition: background-color 0.25s ease;
@@ -98,8 +91,6 @@ nav a:active {
 }
 .toggle-switch.active { background-color: #2c7da0; }
 .toggle-switch.active::after { left: 23px; }
-
-/* --- Баннер --- */
 .hero {
     position: relative;
     height: 50vh;
@@ -131,8 +122,6 @@ nav a:active {
     text-align: center;
     padding: 20px;
 }
-
-/* --- О нас --- */
 .about-section {
     padding: 50px 10%;
     background: rgba(255, 255, 255, 0.85);
@@ -157,8 +146,6 @@ nav a:active {
     grid-column: 1;
     grid-row: 2;
 }
-
-/* Заголовки (16px Bold) – десктоп/планшет */
 h3, .section-title, .product-title, .faq-question {
     font-size: 1rem;
     font-weight: 700;
@@ -170,7 +157,6 @@ h3 {
     margin-bottom: 20px;
     color: #000000;
 }
-/* Остальной текст (14px Regular) */
 p, .about-section p, .faq-answer p, .faq-answer li,
 .contact-info p, .contact-info strong,
 .footer-col p, .footer-col li,
@@ -192,8 +178,6 @@ p, .about-section p, .faq-answer p, .faq-answer li,
     list-style-position: outside;
     line-height: 1.5;
 }
-
-/* --- FAQ --- */
 .faq-list { margin-top: 10px; }
 .faq-item { border-bottom: 1px solid #d4e0e8; margin-bottom: 5px; }
 .faq-question {
@@ -217,8 +201,6 @@ p, .about-section p, .faq-answer p, .faq-answer li,
 .faq-item.active .faq-answer {
     max-height: 250px; transition: max-height 0.4s ease-in; margin-bottom: 15px;
 }
-
-/* --- Каталог / Скидки --- */
 .catalog-section {
     padding: 50px 5%;
     background: rgba(255, 255, 255, 0.88);
@@ -245,14 +227,12 @@ p, .about-section p, .faq-answer p, .faq-answer li,
 }
 .tab-content { display: none; }
 .tab-content.active { display: block; }
-
 .slider-container {
     width: 100%; overflow-x: auto; scroll-snap-type: x mandatory;
     display: flex; gap: 20px; padding-bottom: 20px; scrollbar-width: thin;
 }
 .slider-container::-webkit-scrollbar { height: 8px; }
 .slider-container::-webkit-scrollbar-thumb { background: #ccc; border-radius: 4px; }
-
 .product-card {
     flex: 0 0 300px;
     scroll-snap-align: start;
@@ -271,7 +251,6 @@ p, .about-section p, .faq-answer p, .faq-answer li,
     transform: translateY(-8px);
     box-shadow: 0 12px 20px rgba(0,0,0,0.1);
 }
-
 .product-img {
     width: 100%;
     height: 200px;
@@ -284,7 +263,6 @@ p, .about-section p, .faq-answer p, .faq-answer li,
 .product-card:hover .product-img {
     transform: scale(1.02);
 }
-
 .product-title {
     margin-bottom: 10px;
     height: 45px;
@@ -314,8 +292,6 @@ p, .about-section p, .faq-answer p, .faq-answer li,
     font-size: 0.875rem;
     font-weight: 400;
 }
-
-/* --- Кнопки (обычное состояние #FFD666, ховер #FFC117, актив #BE9010) --- */
 .order-btn,
 .submit-btn {
     background-color: #FFD666;
@@ -339,8 +315,6 @@ p, .about-section p, .faq-answer p, .faq-answer li,
     background-color: #BE9010;
     transform: scale(0.98);
 }
-
-/* --- Модальные окна --- */
 .modal {
     display: none;
     position: fixed;
@@ -369,7 +343,6 @@ p, .about-section p, .faq-answer p, .faq-answer li,
     to { opacity: 1; transform: scale(1); }
 }
 .modal-content h3 { margin-top: 0; text-align: center; color: #000000; }
-
 .close-modal {
     position: absolute;
     top: 12px;
@@ -396,7 +369,6 @@ p, .about-section p, .faq-answer p, .faq-answer li,
     transform: scale(0.95);
     color: #BE9010;
 }
-
 .form-group { margin-bottom: 15px; }
 .form-group label { display: block; margin-bottom: 5px; font-weight: 400; color: #000000; }
 .form-group input {
@@ -409,7 +381,6 @@ p, .about-section p, .faq-answer p, .faq-answer li,
     border-color: #00aaff;
     box-shadow: 0 0 0 2px rgba(0,170,255,0.2);
 }
-
 .loading-modal {
     display: none;
     position: fixed;
@@ -443,7 +414,6 @@ p, .about-section p, .faq-answer p, .faq-answer li,
 }
 .dot:nth-child(1) { animation-delay: -0.32s; }
 .dot:nth-child(2) { animation-delay: -0.16s; }
-
 @keyframes bounce {
     0%, 80%, 100% {
         transform: scale(0);
@@ -454,7 +424,6 @@ p, .about-section p, .faq-answer p, .faq-answer li,
         background: #3FA8FF;
     }
 }
-
 .success-modal {
     display: none;
     position: fixed;
@@ -502,8 +471,6 @@ p, .about-section p, .faq-answer p, .faq-answer li,
     100% { stroke-dashoffset: 0; } 
 }
 .success-text { font-size: 0.875rem; color: #000000; line-height: 1.5; }
-
-/* --- Контакты --- */
 .contacts-section {
     padding: 50px 10%;
     background: rgba(249, 249, 249, 0.9);
@@ -516,8 +483,6 @@ p, .about-section p, .faq-answer p, .faq-answer li,
 .contact-col h3 { margin-top: 0; border: none; color: #000000; }
 .contact-info p { margin: 5px 0; color: #000000; }
 .contact-info strong { display: block; margin-top: 10px; margin-bottom: 2px; color: #000000; }
-
-/* --- Подвал (всегда две колонки) --- */
 .footer {
     background-color: rgba(51, 51, 51, 0.92);
     color: #ffffff;
@@ -540,16 +505,10 @@ p, .about-section p, .faq-answer p, .faq-answer li,
 .footer-col h4 { color: #ffffff; margin-top: 0; margin-bottom: 15px; font-size: 1.1rem; }
 .footer-col p, .footer-col ul, .footer-col li { color: #ffffff; }
 .footer-bottom { text-align: center; font-size: 0.8rem; color: #cccccc; }
-
-/* ============================================ */
-/* ============ АДАПТИВНОСТЬ ================== */
-/* ============================================ */
-
 @media (max-width: 768px) {
     .hero { height: 40vh; }
     .hero-text { font-size: 1.5rem; padding: 15px; }
 }
-
 @media (max-width: 1024px) {
     header { padding: 15px 30px; }
     .logo { font-size: 2rem; }
@@ -566,10 +525,7 @@ p, .about-section p, .faq-answer p, .faq-answer li,
         width: 450px; 
     }
 }
-
-/* --- Мобильная версия (max-width: 767px) --- */
 @media (max-width: 767px) {
-    /* Шапка горизонтальная */
     header { 
         padding: 10px 15px;
         flex-direction: row;
@@ -589,23 +545,17 @@ p, .about-section p, .faq-answer p, .faq-answer li,
     .switch-container span {
         font-size: 0.625rem;
     }
-    
-    /* Баннер */
     .hero { height: 35vh; }
     .hero-text { 
         font-size: 1.3rem; 
         padding: 10px;
     }
-    
-    /* Секции */
     .about-section, .catalog-section, .contacts-section, .footer { 
         padding-left: 4%; 
         padding-right: 4%;
         padding-top: 30px;
         padding-bottom: 30px;
     }
-    
-    /* О нас – вертикальный порядок */
     .content-wrapper {
         display: flex;
         flex-direction: column;
@@ -614,8 +564,6 @@ p, .about-section p, .faq-answer p, .faq-answer li,
     .mission-block { order: 1; }
     .values-block { order: 2; }
     .faq-block   { order: 3; }
-    
-    /* Заголовки (12px Bold) */
     h3, .section-title, .product-title, .faq-question {
         font-size: 0.75rem;
         font-weight: 700;
@@ -624,8 +572,6 @@ p, .about-section p, .faq-answer p, .faq-answer li,
         font-size: 0.75rem;
         margin-bottom: 15px;
     }
-    
-    /* Остальной текст (10px Regular), кроме карточек и кнопок */
     .about-section p, .faq-answer p, .faq-answer li,
     .contact-info p, .contact-info strong,
     .footer-col p, .footer-col li,
@@ -636,8 +582,6 @@ p, .about-section p, .faq-answer p, .faq-answer li,
         font-size: 0.625rem;
         font-weight: 400;
     }
-    
-    /* Карточки товаров и кнопки – остаются 14px */
     .product-desc,
     .price-block,
     .price,
@@ -647,12 +591,9 @@ p, .about-section p, .faq-answer p, .faq-answer li,
     .submit-btn {
         font-size: 0.875rem;
         font-weight: 400;
-    }
-    
+    }   
     .faq-list { margin-top: 15px; }
     .values-list { margin-top: 10px; }
-    
-    /* --- Карточки на мобильных: размер 300x450, картинка 250x250, текст слева --- */
     .product-card {
         flex: 0 0 300px;
         width: 300px;
@@ -693,9 +634,6 @@ p, .about-section p, .faq-answer p, .faq-answer li,
         padding: 8px;
         margin-top: auto;
     }
-    /* --- Конец изменений карточек --- */
-    
-    /* Вкладки "Каталог/Скидки" – 12px Regular */
     .tab-switch {
         gap: 15px;
         margin-bottom: 20px;
@@ -705,8 +643,6 @@ p, .about-section p, .faq-answer p, .faq-answer li,
         font-weight: 400;
         padding: 6px 15px;
     }
-    
-    /* Модальные окна */
     .modal-content, .loading-content, .success-content { 
         width: 92%; 
         padding: 20px; 
@@ -742,14 +678,10 @@ p, .about-section p, .faq-answer p, .faq-answer li,
         top: 8px; 
         right: 12px; 
     }
-    
-    /* Контакты */
     .contacts-grid {
         flex-direction: column;
         gap: 20px;
     }
-    
-    /* Подвал – две колонки */
     .footer-content {
         gap: 20px;
     }
@@ -758,8 +690,6 @@ p, .about-section p, .faq-answer p, .faq-answer li,
         min-width: 120px;
     }
 }
-
-/* --- Очень маленькие экраны --- */
 @media (max-width: 480px) {
     .logo { font-size: 1.2rem; }
     .hero-text { font-size: 1.0rem; }
