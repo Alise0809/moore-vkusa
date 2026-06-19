@@ -7,8 +7,6 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-    <!-- Шапка -->
     <header>
         <h1 class="logo">Море вкуса</h1>
         <nav>
@@ -23,13 +21,9 @@
             <div class="toggle-switch" id="animToggle"></div>
         </div>
     </header>
-
-    <!-- Баннер -->
     <section class="hero">
         <div class="hero-text">Скидка 30% для заказов, сделанных до 12:00!</div>
     </section>
-
-    <!-- О нас (новая структура: три независимых блока) -->
     <section id="about" class="about-section">
         <div class="content-wrapper">
             <!-- 1. Миссия -->
@@ -37,8 +31,6 @@
                 <h3>Миссия компании</h3>
                 <p>Наша цель — сделать качественные морепродукты доступными для каждого клиента.<br>Мы не просто продаём продукты — мы создаём возможность наслаждаться вкусом моря.</p>
             </div>
-
-            <!-- 2. Ценности -->
             <div class="values-block">
                 <h3>Наши ценности</h3>
                 <ul class="values-list">
@@ -49,8 +41,6 @@
                     <li>Клиентоориентированность</li>
                 </ul>
             </div>
-
-            <!-- 3. FAQ -->
             <div class="faq-block">
                 <h3>Часто задаваемые вопросы</h3>
                 <div class="faq-list">
@@ -66,14 +56,11 @@
             </div>
         </div>
     </section>
-
-    <!-- КАТАЛОГ / СКИДКИ (без изменений) -->
     <section id="catalog" class="catalog-section">
         <div class="tab-switch">
             <span class="tab-link active" data-tab="catalog">Каталог</span>
             <span class="tab-link" data-tab="discounts">Скидки</span>
         </div>
-
         <div id="tab-catalog" class="tab-content active">
             <div class="slider-container">
                 <div class="product-card">
@@ -113,7 +100,6 @@
                 </div>
             </div>
         </div>
-
         <div id="tab-discounts" class="tab-content">
             <div class="slider-container">
                 <div class="product-card">
@@ -147,8 +133,6 @@
             </div>
         </div>
     </section>
-
-    <!-- Контакты -->
     <section id="contacts" class="contacts-section">
         <h2 class="section-title">Контакты</h2>
         <div class="contacts-grid">
@@ -162,8 +146,6 @@
             </div>
         </div>
     </section>
-
-    <!-- Подвал -->
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-col"><h4>График работы</h4><p><strong>Понедельник — Пятница:</strong><br>9:00 — 21:00</p><p><strong>Суббота:</strong><br>10:00 — 18:00</p><p><strong>Воскресенье:</strong><br>выходной</p></div>
@@ -171,11 +153,7 @@
         </div>
         <div class="footer-bottom">© 2026 ООО «Море вкуса». Все права защищены.</div>
     </footer>
-
-    <!-- Пузырьки -->
     <div class="bubbles-bg" id="bubblesContainer"></div>
-
-    <!-- Модальные окна -->
     <div id="orderModal" class="modal">
         <div class="modal-content">
             <span class="close-modal">&times;</span>
@@ -188,14 +166,12 @@
             </form>
         </div>
     </div>
-
     <div id="loadingModal" class="loading-modal">
         <div class="loading-content">
             <span class="close-modal" id="closeLoading">&times;</span>
             <div class="loading-dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
         </div>
     </div>
-
     <div id="successModal" class="success-modal">
         <div class="success-content">
             <span class="close-modal" id="closeSuccess">&times;</span>
