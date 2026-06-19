@@ -94,7 +94,7 @@ nav a:active {
 .hero {
     position: relative;
     height: 50vh;
-    background-image: url('Баннер.jpg');
+    background-image: url('images/banner.jpg'); /* ← исправлено */
     background-size: cover;
     background-position: center;
     display: flex;
@@ -409,7 +409,7 @@ p, .about-section p, .faq-answer p, .faq-answer li,
     width: 30px;
     height: 30px;
     border-radius: 50%;
-    background: #D9D9D9; /* начальный цвет */
+    background: #D9D9D9;
     animation: bounce 1.4s infinite ease-in-out both;
 }
 .dot:nth-child(1) { animation-delay: -0.32s; }
