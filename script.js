@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // --- Вкладки ---
     const tabLinks = document.querySelectorAll('.tab-link');
     const tabContents = document.querySelectorAll('.tab-content');
     function switchTab(tabName) {
@@ -13,21 +12,16 @@ document.addEventListener('DOMContentLoaded', function() {
     tabLinks.forEach(link => {
         link.addEventListener('click', () => switchTab(link.getAttribute('data-tab')));
     });
-
-    // --- Аккордеон ---
     const faqItems = document.querySelectorAll('.faq-item');
     faqItems.forEach(item => {
         const btn = item.querySelector('.faq-question');
         btn.addEventListener('click', () => item.classList.toggle('active'));
     });
-
-    // --- Пузырьки ---
     const container = document.getElementById('bubblesContainer');
     let staticBubbles = [];
     let animatedBubbles = [];
     let isAnimating = false;
     const BUBBLES_COUNT = 36;
-
     function createStaticBubbles() {
         container.innerHTML = '';
         for (let i = 0; i < BUBBLES_COUNT; i++) {
@@ -46,7 +40,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         staticBubbles = document.querySelectorAll('.bubble-static');
     }
-
     function createAnimatedBubble() {
         const bubble = document.createElement('div');
         bubble.className = 'bubble-animated';
@@ -73,7 +66,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
         return bubble;
     }
-
     function createAnimatedBubbles() {
         if (animatedBubbles.length) {
             animatedBubbles.forEach(b => b.remove());
@@ -85,13 +77,11 @@ document.addEventListener('DOMContentLoaded', function() {
             animatedBubbles.push(bubble);
         }
     }
-
     function startAnimation() {
         staticBubbles.forEach(b => b.style.display = 'none');
         createAnimatedBubbles();
         isAnimating = true;
     }
-
     function stopAnimation() {
         if (animatedBubbles.length) {
             animatedBubbles.forEach(b => b.remove());
@@ -100,7 +90,6 @@ document.addEventListener('DOMContentLoaded', function() {
         staticBubbles.forEach(b => b.style.display = 'block');
         isAnimating = false;
     }
-
     const animToggle = document.getElementById('animToggle');
     createStaticBubbles();
     isAnimating = false;
@@ -114,27 +103,21 @@ document.addEventListener('DOMContentLoaded', function() {
             animToggle.classList.add('active');
         }
     });
-
-    // --- Модальные окна ---
     const orderModal = document.getElementById('orderModal');
     const loadingModal = document.getElementById('loadingModal');
     const successModal = document.getElementById('successModal');
     const orderForm = document.getElementById('orderForm');
-
     function closeAllModals() {
         orderModal.style.display = 'none';
         loadingModal.style.display = 'none';
         successModal.style.display = 'none';
     }
-
     document.querySelectorAll('.close-modal').forEach(btn => {
         btn.addEventListener('click', closeAllModals);
     });
-
     window.addEventListener('click', (e) => {
         if (e.target === orderModal || e.target === loadingModal || e.target === successModal) closeAllModals();
     });
-
     const buyButtons = document.querySelectorAll('.order-btn');
     buyButtons.forEach(btn => {
         btn.addEventListener('click', (e) => {
@@ -142,7 +125,6 @@ document.addEventListener('DOMContentLoaded', function() {
             orderModal.style.display = 'flex';
         });
     });
-
     orderForm.addEventListener('submit', (e) => {
         e.preventDefault();
         const address = document.getElementById('address').value.trim();
@@ -160,7 +142,6 @@ document.addEventListener('DOMContentLoaded', function() {
             orderForm.reset();
         }, 2000);
     });
-
     const cardInput = document.getElementById('card');
     cardInput.addEventListener('input', function(e) {
         let value = this.value.replace(/\s/g, '').replace(/\D/g, '');
