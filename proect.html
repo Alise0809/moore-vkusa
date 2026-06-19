@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Море вкуса</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Шапка -->
+    <header>
+        <h1 class="logo">Море вкуса</h1>
+        <nav>
+            <ul>
+                <li><a href="#about">О нас</a></li>
+                <li><a href="#catalog">Каталог</a></li>
+                <li><a href="#contacts">Контакты</a></li>
+            </ul>
+        </nav>
+        <div class="switch-container" id="animToggleContainer">
+            <span>Включить анимацию</span>
+            <div class="toggle-switch" id="animToggle"></div>
+        </div>
+    </header>
+
+    <!-- Баннер -->
+    <section class="hero">
+        <div class="hero-text">Скидка 30% для заказов, сделанных до 12:00!</div>
+    </section>
+
+    <!-- О нас (новая структура: три независимых блока) -->
+    <section id="about" class="about-section">
+        <div class="content-wrapper">
+            <!-- 1. Миссия -->
+            <div class="mission-block">
+                <h3>Миссия компании</h3>
+                <p>Наша цель — сделать качественные морепродукты доступными для каждого клиента.<br>Мы не просто продаём продукты — мы создаём возможность наслаждаться вкусом моря.</p>
+            </div>
+
+            <!-- 2. Ценности -->
+            <div class="values-block">
+                <h3>Наши ценности</h3>
+                <ul class="values-list">
+                    <li>Качество превыше всего</li>
+                    <li>Свежесть — ежедневные поставки</li>
+                    <li>Честность — прозрачные условия</li>
+                    <li>Профессионализм — команда экспертов</li>
+                    <li>Клиентоориентированность</li>
+                </ul>
+            </div>
+
+            <!-- 3. FAQ -->
+            <div class="faq-block">
+                <h3>Часто задаваемые вопросы</h3>
+                <div class="faq-list">
+                    <div class="faq-item">
+                        <button class="faq-question">Как появилась наша компания?<span class="icon">▼</span></button>
+                        <div class="faq-answer"><p>Наша компания родилась из идеи сделать жизнь людей удобнее. Группа энтузиастов объединилась, чтобы воплощать инновации и менять мир к лучшему.</p></div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">Сколько лет мы на рынке?<span class="icon">▼</span></button>
+                        <div class="faq-answer"><p>На рынке более 10 лет. За это время:</p><ul><li>Набрали серьёзный опыт</li><li>Создали надёжную клиентскую базу</li><li>Сформировали сильную команду</li><li>Не прекращаем развиваться</li></ul></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- КАТАЛОГ / СКИДКИ (без изменений) -->
+    <section id="catalog" class="catalog-section">
+        <div class="tab-switch">
+            <span class="tab-link active" data-tab="catalog">Каталог</span>
+            <span class="tab-link" data-tab="discounts">Скидки</span>
+        </div>
+
+        <div id="tab-catalog" class="tab-content active">
+            <div class="slider-container">
+                <div class="product-card">
+                    <img class="product-img" src="Тигровые креветки.jpeg" alt="Тигровые креветки">
+                    <div class="product-title">Тигровые креветки свеже-мороженые</div>
+                    <div class="product-desc">Яркий вкус и плотная текстура. Идеальны для гриля и фритюра.</div>
+                    <div class="price-block"><span class="price">700 ₽</span><span class="old-price">1000 ₽</span></div>
+                    <button class="order-btn">Купить</button>
+                </div>
+                <div class="product-card">
+                    <img class="product-img" src="Северные креветки.jpeg" alt="Северные креветки">
+                    <div class="product-title">Северные креветки варёно-мороженые</div>
+                    <div class="product-desc">Мелкие, но сладкие. Традиционно используются в супах и салатах.</div>
+                    <div class="price-block"><span class="price">500 ₽</span><span class="old-price">800 ₽</span></div>
+                    <button class="order-btn">Купить</button>
+                </div>
+                <div class="product-card">
+                    <img class="product-img" src="Свежие креветки.jpeg" alt="Свежие креветки">
+                    <div class="product-title">Креветки свежие</div>
+                    <div class="product-desc">Сочные отборные креветки с глянцевым блеском.</div>
+                    <div class="price-block"><span class="price">600 ₽</span><span class="old-price" style="visibility: hidden;">-</span></div>
+                    <button class="order-btn">Купить</button>
+                </div>
+                <div class="product-card">
+                    <img class="product-img" src="Мидии в раковинах.jpeg" alt="Мидии">
+                    <div class="product-title">Мидии в раковинах</div>
+                    <div class="product-desc">Классический деликатес для романтического ужина.</div>
+                    <div class="price-block"><span class="price">450 ₽</span><span class="old-price">550 ₽</span></div>
+                    <button class="order-btn">Купить</button>
+                </div>
+                <div class="product-card">
+                    <img class="product-img" src="Филе лосося.jpeg" alt="Лосось">
+                    <div class="product-title">Филе лосося охлажденное</div>
+                    <div class="product-desc">Премиальное качество, насыщенный цвет.</div>
+                    <div class="price-block"><span class="price">1200 ₽</span><span class="old-price">1500 ₽</span></div>
+                    <button class="order-btn">Купить</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="tab-discounts" class="tab-content">
+            <div class="slider-container">
+                <div class="product-card">
+                    <img class="product-img" src="Тигровые креветки.jpeg" alt="Тигровые креветки">
+                    <div class="product-title">Тигровые креветки свеже-мороженые</div>
+                    <div class="product-desc">Акция! Сочные гигантские креветки.</div>
+                    <div class="price-block"><span class="price">700 ₽</span><span class="old-price">1000 ₽</span><span class="discount-badge">-30%</span></div>
+                    <button class="order-btn">Купить</button>
+                </div>
+                <div class="product-card">
+                    <img class="product-img" src="Северные креветки.jpeg" alt="Северные креветки">
+                    <div class="product-title">Северные креветки варёно-мороженые</div>
+                    <div class="product-desc">Сладкие и нежные, идеальная закуска.</div>
+                    <div class="price-block"><span class="price">500 ₽</span><span class="old-price">800 ₽</span><span class="discount-badge">-37%</span></div>
+                    <button class="order-btn">Купить</button>
+                </div>
+                <div class="product-card">
+                    <img class="product-img" src="Мидии в раковинах.jpeg" alt="Мидии">
+                    <div class="product-title">Мидии в раковинах</div>
+                    <div class="product-desc">Нежнейшие мидии из чистых вод.</div>
+                    <div class="price-block"><span class="price">450 ₽</span><span class="old-price">550 ₽</span><span class="discount-badge">-18%</span></div>
+                    <button class="order-btn">Купить</button>
+                </div>
+                <div class="product-card">
+                    <img class="product-img" src="Филе лосося.jpeg" alt="Лосось">
+                    <div class="product-title">Филе лосося охлажденное</div>
+                    <div class="product-desc">Стейки премиум-класса.</div>
+                    <div class="price-block"><span class="price">1200 ₽</span><span class="old-price">1500 ₽</span><span class="discount-badge">-20%</span></div>
+                    <button class="order-btn">Купить</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Контакты -->
+    <section id="contacts" class="contacts-section">
+        <h2 class="section-title">Контакты</h2>
+        <div class="contacts-grid">
+            <div class="contact-col">
+                <h3>Как с нами связаться</h3>
+                <div class="contact-info">
+                    <p><strong>Основной офис:</strong><br>Москва, ул. N</p>
+                    <p><strong>Телефоны:</strong><br>Отдел продаж: 8 (800) 777-XX-XX<br>📞 Горячая линия: +7 (495) XXX-XX-XX</p>
+                    <p><strong>Email:</strong><br>support@yanodex.ru</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Подвал -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-col"><h4>График работы</h4><p><strong>Понедельник — Пятница:</strong><br>9:00 — 21:00</p><p><strong>Суббота:</strong><br>10:00 — 18:00</p><p><strong>Воскресенье:</strong><br>выходной</p></div>
+            <div class="footer-col"><h4>Юридическая информация</h4><p><strong>Реквизиты компании:</strong></p><ul><li>• ООО «Море вкуса»</li><li>• ИНН/КПП: XXXXXXXXXX</li><li>• ОГРН: XXXXXXXXXXXXX</li><li>• Юридический адрес: г. Москва, ул. Морская, д. 15</li></ul></div>
+        </div>
+        <div class="footer-bottom">© 2026 ООО «Море вкуса». Все права защищены.</div>
+    </footer>
+
+    <!-- Пузырьки -->
+    <div class="bubbles-bg" id="bubblesContainer"></div>
+
+    <!-- Модальные окна -->
+    <div id="orderModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3>Оформление заказа</h3>
+            <form id="orderForm">
+                <div class="form-group"><label for="address">Адрес доставки *</label><input type="text" id="address" required placeholder="Улица, дом, квартира"></div>
+                <div class="form-group"><label for="phone">Номер телефона *</label><input type="tel" id="phone" required placeholder="+7 (___) ___-__-__"></div>
+                <div class="form-group"><label for="card">Номер карты *</label><input type="text" id="card" required placeholder="0000 0000 0000 0000" maxlength="19"></div>
+                <button type="submit" class="submit-btn">Отправить</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="loadingModal" class="loading-modal">
+        <div class="loading-content">
+            <span class="close-modal" id="closeLoading">&times;</span>
+            <div class="loading-dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+        </div>
+    </div>
+
+    <div id="successModal" class="success-modal">
+        <div class="success-content">
+            <span class="close-modal" id="closeSuccess">&times;</span>
+            <div class="success-text">Отправка формы завершена!<br>Ожидайте получение заказа в течение 2 часов!</div>
+            <svg class="success-checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                <path class="checkmark-check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+            </svg>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
