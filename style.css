@@ -94,7 +94,7 @@ nav a:active {
 .hero {
     position: relative;
     height: 50vh;
-    background-image: url('images/banner.jpg'); /* ← исправлено */
+    background-image: url('images/banner.jpg');
     background-size: cover;
     background-position: center;
     display: flex;
@@ -595,9 +595,9 @@ p, .about-section p, .faq-answer p, .faq-answer li,
     .faq-list { margin-top: 15px; }
     .values-list { margin-top: 10px; }
     .product-card {
-        flex: 0 0 300px;
-        width: 300px;
-        height: 450px;
+        flex: 0 0 250px;      
+        width: 250px;
+        height: 400px;        
         padding: 10px;
         box-sizing: border-box;
         scroll-snap-align: center;
@@ -606,8 +606,8 @@ p, .about-section p, .faq-answer p, .faq-answer li,
         justify-content: space-between;
     }
     .product-img {
-        width: 250px;
-        height: 250px;
+        width: 200px;
+        height: 200px;
         object-fit: cover;
         margin: 0 auto 10px auto;
         border-radius: 8px;
@@ -706,14 +706,14 @@ p, .about-section p, .faq-answer p, .faq-answer li,
         display: none;
     }
     .product-card {
-        flex: 0 0 280px;
-        width: 280px;
-        height: 450px;
+        flex: 0 0 200px;      
+        width: 200px;
+        height: 360px;        
         padding: 8px;
     }
     .product-img {
-        width: 230px;
-        height: 230px;
+        width: 160px;
+        height: 160px;
     }
     .footer-col {
         flex: 1 1 100%;
