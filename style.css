@@ -1,107 +1,197 @@
+/* Основные настройки для всей страницы */
 body {
-    font-family: 'Inter', sans-serif;
-    margin: 0;
+    font-family: 'Inter', sans-serif; 
+    margin: 0;                         /* убираем отступы по умолчанию */
     padding: 0;
-    color: #000000;
-    background-color: #fff;
-    position: relative;
-    font-size: 16px;
-    font-weight: 400;
+    color: #000000;                    
+    background-color: #fff;          
+    position: relative;                
+    font-size: 16px;                  
+    font-weight: 400;                 
 }
+
 a { text-decoration: none; color: inherit; }
+
 ul { list-style: none; padding: 0; margin: 0; }
+
+
+/* ============================================================
+   2. ФОНОВЫЕ ПУЗЫРЬКИ
+   ============================================================ */
+
+/* Контейнер для пузырьков — фиксирован на весь экран, клики проходят сквозь */
 .bubbles-bg {
-    position: fixed;
+    position: fixed;         /* не двигается при скролле */
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    pointer-events: none;
-    z-index: 0;
-    overflow: hidden;
+    pointer-events: none;    /* чтобы не мешать кликам по кнопкам */
+    z-index: 0;              /* под основным контентом */
+    overflow: hidden;        /* обрезаем пузырьки, выходящие за границы */
 }
+
+/* Общие стили для статических и анимированных пузырьков */
 .bubble-static, .bubble-animated {
-    position: absolute;
-    border-radius: 50%;
+    position: absolute;      /* позиционируются внутри .bubbles-bg */
+    border-radius: 50%;      /* делаем круглыми */
+    /* Градиент с бликом для объёмного эффекта */
     background: radial-gradient(circle at 35% 35%, #ffffff, #00aaff);
+    /* Внешнее свечение и внутренний блик */
     box-shadow: 0 8px 20px rgba(0, 150, 255, 0.5), inset 0 1px 4px rgba(255,255,255,0.9);
-    border: 2px solid rgba(255, 255, 255, 0.95);
-    will-change: transform;
+    border: 2px solid rgba(255, 255, 255, 0.95); /* почти белая обводка */
+    will-change: transform;  /* подсказка браузеру для оптимизации анимации */
 }
+
+/* Ключевые кадры анимации подъёма пузырька */
 @keyframes floatUp {
-    0% { transform: translateY(0) translateX(0) scale(1); opacity: 0.95; }
-    50% { transform: translateY(-50vh) translateX(15px) scale(1.1); opacity: 0.85; }
-    100% { transform: translateY(-110vh) translateX(-15px) scale(0.7); opacity: 0; }
+    0% {
+        transform: translateY(0) translateX(0) scale(1);
+        opacity: 0.95;
+    }
+    50% {
+        transform: translateY(-50vh) translateX(15px) scale(1.1);
+        opacity: 0.85;
+    }
+    100% {
+        transform: translateY(-110vh) translateX(-15px) scale(0.7);
+        opacity: 0;
+    }
 }
+
+
+/* ============================================================
+   3. ШАПКА САЙТА (HEADER)
+   ============================================================ */
+
 header {
-    background-color: #FFD666;
+    background-color: #FFD666;        
     padding: 20px 40px;
+    display: flex;                   
+    justify-content: space-between;   /* логотип слева, меню и переключатель справа */
+    align-items: center;              /* центрирование по вертикали */
+    flex-wrap: wrap;                  /* элементы переносятся на новую строку, если не влезают */
+    gap: 10px 20px;                   /* отступы между элементами (вертикаль/горизонталь) */
+    position: relative;
+    z-index: 10;                      /* выше пузырьков, но ниже модалок */
+    color: #000000;
+}
+
+/* Логотип — крупный заголовок */
+.logo {
+    font-size: 2.5rem;               /* 40px (2.5 * 16) */
+    font-weight: normal;
+    margin: 0;
+}
+
+/* Навигационное меню — горизонтальный flex */
+nav ul {
     display: flex;
-    justify-content: space-between;
+    gap: 30px;                       /* расстояние между пунктами */
     align-items: center;
     flex-wrap: wrap;
-    gap: 10px 20px;
-    position: relative;
-    z-index: 10;
-    color: #000000;
 }
-.logo { font-size: 2.5rem; font-weight: normal; margin: 0; }
-nav ul { display: flex; gap: 30px; align-items: center; flex-wrap: wrap; }
+
+/* Ссылки в меню */
 nav a {
-    font-size: 0.875rem;
+    font-size: 0.875rem;             /* 14px */
     font-weight: 400;
     color: #000000;
-    transition: all 0.2s ease;
+    transition: all 0.2s ease;       /* плавное изменение всех свойств при наведении/нажатии */
     padding: 5px 8px;
-    border-radius: 8px;
+    border-radius: 8px;              /* скругление фона при наведении */
 }
+
+/* Состояние при наведении курсора */
 nav a:hover {
     background-color: rgba(0,0,0,0.05);
-    transform: translateY(-1px);
-    color: #FFC117;
+    transform: translateY(-1px);     /* слегка приподнимаем */
+    color: #FFC117;                  /* жёлтый, по макету */
 }
+
+/* Состояние при нажатии (активное) */
 nav a:active {
-    transform: translateY(1px);
-    color: #BE9010;
+    transform: translateY(1px);      /* слегка опускаем */
+    color: #BE9010;                  /* тёмно-жёлтый, по макету */
 }
+
+
+/* ============================================================
+   4. ПЕРЕКЛЮЧАТЕЛЬ АНИМАЦИИ ПУЗЫРЬКОВ
+   ============================================================ */
+
+/* Контейнер, в котором находятся текст и ползунок */
 .switch-container {
     display: flex;
     align-items: center;
     gap: 12px;
-    font-size: 0.875rem;
+    font-size: 0.875rem;             /* 14px */
     font-weight: 400;
     cursor: pointer;
-    user-select: none;
-    white-space: nowrap;
+    user-select: none;               /* текст не выделяется при клике */
+    white-space: nowrap;             /* текст не переносится */
     color: #000000;
     padding: 5px 8px;
     border-radius: 30px;
     transition: background 0.2s;
 }
+
+/* При наведении на контейнер — лёгкий серый фон */
 .switch-container:hover { background-color: rgba(0,0,0,0.05); }
+
+/* При клике — эффект нажатия (уменьшение) */
 .switch-container:active { transform: scale(0.98); }
+
+/* Сам ползунок (переключатель) */
 .toggle-switch {
-    width: 44px; height: 22px; background-color: #ccc; border-radius: 22px;
-    position: relative; cursor: pointer; transition: background-color 0.25s ease;
+    width: 44px;
+    height: 22px;
+    background-color: #ccc;          /* серый фон в выключенном состоянии */
+    border-radius: 22px;             /* скруглённый прямоугольник */
+    position: relative;
+    cursor: pointer;
+    transition: background-color 0.25s ease;
 }
+
+/* Круглый ползунок внутри переключателя (белая точка) */
 .toggle-switch::after {
-    content: ''; position: absolute; width: 18px; height: 18px;
-    background-color: white; border-radius: 50%; top: 2px; left: 3px;
-    transition: left 0.25s ease;
+    content: '';
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    background-color: white;
+    border-radius: 50%;
+    top: 2px;
+    left: 3px;                       /* начальное положение слева */
+    transition: left 0.25s ease;     /* анимация перемещения */
 }
-.toggle-switch.active { background-color: #2c7da0; }
-.toggle-switch.active::after { left: 23px; }
+
+/* Активное состояние (включено) — фон синий, ползунок сдвинут вправо */
+.toggle-switch.active {
+    background-color: #2c7da0;
+}
+.toggle-switch.active::after {
+    left: 23px;
+}
+
+
+/* ============================================================
+   5. БАННЕР (HERO)
+   ============================================================ */
+
 .hero {
     position: relative;
-    height: 50vh;
-    background-image: url('images/banner.jpg');
-    background-size: cover;
-    background-position: center;
+    height: 50vh;                    /* занимает 50% высоты окна браузера */
+    background-image: url('images/banner.jpg'); 
+    background-size: cover;        
+    background-position: center;    
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 1;
 }
+
+/* Затемняющий слой поверх картинки для читаемости текста */
 .hero::before {
     content: '';
     position: absolute;
@@ -109,54 +199,77 @@ nav a:active {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.4);
+    background: rgba(0, 0, 0, 0.4);  /* полупрозрачный чёрный */
     z-index: 1;
 }
+
+/* Текст на баннере */
 .hero-text {
     position: relative;
-    z-index: 2;
-    font-size: 2.5rem;
-    color: #fffb00;
+    z-index: 2;                      /* поверх затемнения */
+    font-size: 2.5rem;               /* 40px */
+    color: #fffb00;                  /* жёлтый */
     font-weight: bold;
-    text-shadow: 2px 2px 5px rgba(0,0,0,0.8);
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.8); /* тень для читаемости */
     text-align: center;
     padding: 20px;
 }
+
+
+/* ============================================================
+   6. СЕКЦИЯ «О НАС»
+   ============================================================ */
+
 .about-section {
-    padding: 50px 10%;
-    background: rgba(255, 255, 255, 0.85);
+    padding: 50px 10%;               /* отступы сверху/снизу 50px, слева/справа 10% */
+    background: rgba(255, 255, 255, 0.85); /* полупрозрачный белый фон */
     position: relative;
     z-index: 1;
 }
+
+/* Контейнер с CSS-сеткой для трёх блоков */
 .content-wrapper {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;  /* две колонки одинаковой ширины */
     gap: 40px;
-    align-items: start;
+    align-items: start;              /* выравнивание по верхнему краю */
 }
+
+/* Позиционирование блоков в сетке */
 .mission-block {
-    grid-column: 1;
-    grid-row: 1;
+    grid-column: 1;                  /* первая колонка */
+    grid-row: 1;                     /* первая строка */
 }
 .values-block {
-    grid-column: 2;
-    grid-row: 1 / 3;
+    grid-column: 2;                  /* вторая колонка */
+    grid-row: 1 / 3;                 /* занимает первую и вторую строку (растянут по вертикали) */
 }
 .faq-block {
-    grid-column: 1;
-    grid-row: 2;
+    grid-column: 1;                  /* первая колонка */
+    grid-row: 2;                     /* вторая строка */
 }
+
+
+/* ============================================================
+   7. ЗАГОЛОВКИ И ТЕКСТ
+   ============================================================ */
+
+/* Все основные заголовки (h3, section-title, product-title, faq-question) — 16px жирные */
 h3, .section-title, .product-title, .faq-question {
-    font-size: 1rem;
-    font-weight: 700;
+    font-size: 1rem;                 /* 16px */
+    font-weight: 700;                /* жирный */
 }
+
+/* Стиль заголовков h3 — подчёркивание снизу жёлтой линией */
 h3 {
     border-bottom: 2px solid #fce8a5;
-    display: inline-block;
+    display: inline-block;           /* подчёркивание только под текстом, а не на всю ширину */
     padding-bottom: 5px;
     margin-bottom: 20px;
     color: #000000;
 }
+
+/* Основной текст (абзацы, списки, метки) — 14px, обычная жирность, высота строки 1.6 */
 p, .about-section p, .faq-answer p, .faq-answer li,
 .contact-info p, .contact-info strong,
 .footer-col p, .footer-col li,
@@ -164,137 +277,250 @@ p, .about-section p, .faq-answer p, .faq-answer li,
 .modal-content p, .success-text,
 .form-group label,
 .tab-content p:not(.product-desc):not(.price-block) {
-    font-size: 0.875rem;
+    font-size: 0.875rem;             /* 14px */
     font-weight: 400;
     color: #000000;
-    line-height: 1.6;
+    line-height: 1.6;                /* межстрочный интервал для удобочитаемости */
 }
+
+
+/* ============================================================
+   8. СПИСОК ЦЕННОСТЕЙ
+   ============================================================ */
+
 .values-list {
     padding-left: 0;
-    margin-left: 20px;
+    margin-left: 20px;               /* отступ для маркеров */
 }
 .values-list li {
-    list-style-type: disc;
-    list-style-position: outside;
+    list-style-type: disc;           /* стандартные круглые маркеры */
+    list-style-position: outside;    /* маркеры слева от текста */
     line-height: 1.5;
 }
+
+
+/* ============================================================
+   9. FAQ (АККОРДЕОН)
+   ============================================================ */
+
 .faq-list { margin-top: 10px; }
-.faq-item { border-bottom: 1px solid #d4e0e8; margin-bottom: 5px; }
+
+/* Каждый вопрос — разделитель снизу */
+.faq-item {
+    border-bottom: 1px solid #d4e0e8;
+    margin-bottom: 5px;
+}
+
+/* Кнопка-заголовок вопроса */
 .faq-question {
-    background: none; border: none; width: 100%; text-align: left;
+    background: none;                /* убираем стандартный фон кнопки */
+    border: none;                    /* убираем рамку */
+    width: 100%;                     /* растягиваем на всю ширину */
+    text-align: left;
     padding: 15px 10px 15px 0;
-    cursor: pointer; display: flex; justify-content: space-between;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;  /* текст слева, иконка справа */
     align-items: center;
     transition: all 0.2s;
     border-radius: 8px;
 }
+
+/* При наведении на вопрос — лёгкий серый фон и отступ слева */
 .faq-question:hover {
     background-color: rgba(0,0,0,0.03);
     padding-left: 8px;
 }
 .faq-question:active { transform: scale(0.99); }
-.faq-question .icon { font-size: 1.2rem; transition: transform 0.2s; color: #000000; }
-.faq-item.active .faq-question .icon { transform: rotate(180deg); }
+
+/* Иконка-стрелка (▼) */
+.faq-question .icon {
+    font-size: 1.2rem;
+    transition: transform 0.2s;
+    color: #000000;
+}
+
+/* При открытом состоянии иконка повёрнута на 180° */
+.faq-item.active .faq-question .icon {
+    transform: rotate(180deg);
+}
+
+/* Блок с ответом — скрыт по умолчанию (max-height: 0) */
 .faq-answer {
-    max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
 }
+
+/* При открытом состоянии — раскрывается до 250px */
 .faq-item.active .faq-answer {
-    max-height: 250px; transition: max-height 0.4s ease-in; margin-bottom: 15px;
+    max-height: 250px;
+    transition: max-height 0.4s ease-in;
+    margin-bottom: 15px;
 }
+
+
+/* ============================================================
+   10. КАТАЛОГ И СКИДКИ
+   ============================================================ */
+
 .catalog-section {
     padding: 50px 5%;
     background: rgba(255, 255, 255, 0.88);
     position: relative;
     z-index: 1;
 }
+
+/* Переключатели вкладок (Каталог / Скидки) — flex, центрированы */
 .tab-switch {
-    display: flex; justify-content: center; gap: 30px; margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 30px;
 }
+
+/* Каждая вкладка — 24px (по макету) */
 .tab-switch span {
-    font-size: 1.5rem;
+    font-size: 1.5rem;               /* 24px */
     font-weight: 400;
-    cursor: pointer; padding: 8px 18px; border-bottom: 3px solid transparent;
-    color: #000000; transition: all 0.2s; border-radius: 40px;
+    cursor: pointer;
+    padding: 8px 18px;
+    border-bottom: 3px solid transparent; /* невидимая нижняя граница */
+    color: #000000;
+    transition: all 0.2s;
+    border-radius: 40px;
 }
+
+/* При наведении — лёгкий фон, слегка поднимается */
 .tab-switch span:hover {
     background-color: rgba(0,0,0,0.04);
     transform: translateY(-2px);
 }
+/* При нажатии — опускается */
 .tab-switch span:active { transform: translateY(1px); }
+
+/* Активная вкладка — жирный шрифт, нижняя граница чёрная */
 .tab-switch span.active {
-    color: #000000; border-bottom-color: #000000; font-weight: bold;
+    color: #000000;
+    border-bottom-color: #000000;
+    font-weight: bold;
     background-color: rgba(0,0,0,0.02);
 }
+
+/* Контент вкладок — скрыт по умолчанию, показывается при .active */
 .tab-content { display: none; }
 .tab-content.active { display: block; }
+
+
+/* ============================================================
+   11. СЛАЙДЕР С КАРТОЧКАМИ ТОВАРОВ
+   ============================================================ */
+
+/* Контейнер-слайдер — горизонтальная прокрутка с привязкой */
 .slider-container {
-    width: 100%; overflow-x: auto; scroll-snap-type: x mandatory;
-    display: flex; gap: 20px; padding-bottom: 20px; scrollbar-width: thin;
+    width: 100%;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;   /* при прокрутке карточка прилипает к началу */
+    display: flex;
+    gap: 20px;
+    padding-bottom: 20px;            /* место под скроллбар */
+    scrollbar-width: thin;           /* тонкий скроллбар в Firefox */
 }
+
+/* Стилизация скроллбара в Chrome, Safari, Edge */
 .slider-container::-webkit-scrollbar { height: 8px; }
 .slider-container::-webkit-scrollbar-thumb { background: #ccc; border-radius: 4px; }
+
+/* Карточка товара */
 .product-card {
-    flex: 0 0 300px;
-    scroll-snap-align: start;
+    flex: 0 0 300px;                 /* фиксированная ширина 300px, не сжимается */
+    scroll-snap-align: start;        /* прилипание к началу */
     border: 1px solid #eee;
     border-radius: 10px;
     padding: 20px;
     display: flex;
-    flex-direction: column;
+    flex-direction: column;          /* элементы идут сверху вниз */
     background: rgba(255, 255, 255, 0.95);
     box-shadow: 0 4px 10px rgba(0,0,0,0.05);
     transition: transform 0.2s, box-shadow 0.2s;
     color: #000000;
-    box-sizing: border-box;
+    box-sizing: border-box;          /* padding не увеличивает общую ширину */
 }
+
+/* При наведении на карточку — приподнимается и тень становится больше */
 .product-card:hover {
     transform: translateY(-8px);
     box-shadow: 0 12px 20px rgba(0,0,0,0.1);
 }
+
+/* Изображение товара */
 .product-img {
-    width: 100%;
+    width: 100%;                     /* занимает всю ширину карточки */
     height: 200px;
-    object-fit: cover;
+    object-fit: cover;               /* обрезается, чтобы заполнить контейнер */
     border-radius: 8px;
     margin-bottom: 15px;
-    background-color: #f0f0f0;
+    background-color: #f0f0f0;       /* фон на время загрузки */
     transition: transform 0.2s;
 }
+
+/* При наведении на карточку — картинка слегка увеличивается */
 .product-card:hover .product-img {
     transform: scale(1.02);
 }
+
+/* Название товара — фиксированная высота для выравнивания */
 .product-title {
     margin-bottom: 10px;
-    height: 45px;
+    height: 45px;                    /* все названия одинаковой высоты */
     color: #000000;
 }
+
+/* Описание товара */
 .product-desc {
-    font-size: 0.875rem;
+    font-size: 0.875rem;             /* 14px */
     font-weight: 400;
     color: #333;
     margin-bottom: 15px;
-    flex-grow: 1;
+    flex-grow: 1;                    /* занимает оставшееся пространство */
 }
+
+/* Блок с ценами (текущая и старая) — flex с распределением по краям */
 .price-block {
-    display: flex; justify-content: space-between; align-items: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin-bottom: 15px;
     font-size: 0.875rem;
     font-weight: 400;
     color: #000000;
 }
+
 .price { color: #000000; }
-.old-price { text-decoration: line-through; color: #666; font-size: 0.875rem; }
+.old-price {
+    text-decoration: line-through;   /* зачёркнутый текст */
+    color: #666;
+    font-size: 0.875rem;
+}
+
+/* Бейдж скидки — красный фон, белый текст, скруглённый */
 .discount-badge {
-    background-color: #FF0000;
+    background-color: #FF0000;       /* красный, по макету */
     color: white;
     padding: 3px 8px;
     border-radius: 10px;
     font-size: 0.875rem;
     font-weight: 400;
 }
+
+
+/* ============================================================
+   12. КНОПКИ (общие стили для .order-btn и .submit-btn)
+   ============================================================ */
+
 .order-btn,
 .submit-btn {
-    background-color: #FFD666;
+    background-color: #FFD666;       /* жёлтый фон */
     color: #000000;
     border: none;
     padding: 10px;
@@ -305,28 +531,41 @@ p, .about-section p, .faq-answer p, .faq-answer li,
     font-weight: 400;
     transition: all 0.2s;
 }
+
+/* При наведении — фон становится темнее, кнопка увеличивается */
 .order-btn:hover,
 .submit-btn:hover {
-    background-color: #FFC117;
+    background-color: #FFC117;       /* по макету */
     transform: scale(1.02);
 }
+
+/* При нажатии — фон становится ещё темнее, кнопка уменьшается */
 .order-btn:active,
 .submit-btn:active {
-    background-color: #BE9010;
+    background-color: #BE9010;       /* по макету */
     transform: scale(0.98);
 }
+
+
+/* ============================================================
+   13. МОДАЛЬНЫЕ ОКНА
+   ============================================================ */
+
+/* Затемнённый фон для всех модалок */
 .modal {
-    display: none;
-    position: fixed;
+    display: none;                   /* скрыты по умолчанию, JS включает display:flex */
+    position: fixed;                 /* фиксированы поверх страницы */
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0.5);
-    z-index: 1000;
+    background: rgba(0,0,0,0.5);     /* полупрозрачный чёрный */
+    z-index: 1000;                   /* поверх всего */
     justify-content: center;
     align-items: center;
 }
+
+/* Белая карточка модального окна */
 .modal-content {
     background: #fff;
     padding: 30px;
@@ -336,13 +575,23 @@ p, .about-section p, .faq-answer p, .faq-answer li,
     position: relative;
     box-shadow: 0 10px 30px rgba(0,0,0,0.3);
     color: #000000;
-    animation: fadeInScale 0.2s ease;
+    animation: fadeInScale 0.2s ease;  /* анимация появления */
 }
+
+/* Анимация появления модалки (плавное увеличение) */
 @keyframes fadeInScale {
     from { opacity: 0; transform: scale(0.95); }
     to { opacity: 1; transform: scale(1); }
 }
-.modal-content h3 { margin-top: 0; text-align: center; color: #000000; }
+
+/* Заголовок модалки — центрирован */
+.modal-content h3 {
+    margin-top: 0;
+    text-align: center;
+    color: #000000;
+}
+
+/* Кнопка закрытия (крестик) — абсолютно позиционирована в правом верхнем углу */
 .close-modal {
     position: absolute;
     top: 12px;
@@ -358,8 +607,10 @@ p, .about-section p, .faq-answer p, .faq-answer li,
     text-align: center;
     border-radius: 50%;
     transition: 0.2s;
-    z-index: 1010;
+    z-index: 1010;                   /* поверх содержимого модалки */
 }
+
+/* При наведении на крестик — меняет фон и цвет, увеличивается */
 .close-modal:hover {
     background: #e0e0e0;
     color: #FFC117;
@@ -369,18 +620,46 @@ p, .about-section p, .faq-answer p, .faq-answer li,
     transform: scale(0.95);
     color: #BE9010;
 }
+
+
+/* ============================================================
+   14. ФОРМА ЗАКАЗА В МОДАЛЬНОМ ОКНЕ
+   ============================================================ */
+
 .form-group { margin-bottom: 15px; }
-.form-group label { display: block; margin-bottom: 5px; font-weight: 400; color: #000000; }
+
+/* Подписи к полям */
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 400;
+    color: #000000;
+}
+
+/* Поля ввода */
 .form-group input {
-    width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 8px;
-    font-size: 1rem; box-sizing: border-box; color: #000000;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    box-sizing: border-box;
+    color: #000000;
     transition: border 0.2s, box-shadow 0.2s;
 }
+
+/* При фокусе — синяя обводка и тень */
 .form-group input:focus {
     outline: none;
     border-color: #00aaff;
     box-shadow: 0 0 0 2px rgba(0,170,255,0.2);
 }
+
+
+/* ============================================================
+   15. ЗАГРУЗКА (LOADING) — ТРИ ТОЧКИ
+   ============================================================ */
+
 .loading-modal {
     display: none;
     position: fixed;
@@ -393,6 +672,7 @@ p, .about-section p, .faq-answer p, .faq-answer li,
     justify-content: center;
     align-items: center;
 }
+
 .loading-content {
     background: #fff;
     width: 400px;
@@ -404,16 +684,27 @@ p, .about-section p, .faq-answer p, .faq-answer li,
     align-items: center;
     animation: fadeInScale 0.2s ease;
 }
-.loading-dots { display: flex; gap: 20px; }
+
+/* Контейнер для трёх точек */
+.loading-dots {
+    display: flex;
+    gap: 20px;
+}
+
+/* Одна точка — серая, анимируется подпрыгиванием */
 .dot {
     width: 30px;
     height: 30px;
     border-radius: 50%;
-    background: #D9D9D9;
+    background: #D9D9D9;             /* серый, по макету */
     animation: bounce 1.4s infinite ease-in-out both;
 }
+
+/* Задержка для создания эффекта последовательности */
 .dot:nth-child(1) { animation-delay: -0.32s; }
 .dot:nth-child(2) { animation-delay: -0.16s; }
+
+/* Анимация подпрыгивания с изменением цвета */
 @keyframes bounce {
     0%, 80%, 100% {
         transform: scale(0);
@@ -421,9 +712,15 @@ p, .about-section p, .faq-answer p, .faq-answer li,
     }
     40% {
         transform: scale(1);
-        background: #3FA8FF;
+        background: #3FA8FF;          /* синий, по макету */
     }
 }
+
+
+/* ============================================================
+   16. УСПЕШНАЯ ОТПРАВКА (SUCCESS) — ГАЛОЧКА
+   ============================================================ */
+
 .success-modal {
     display: none;
     position: fixed;
@@ -436,6 +733,7 @@ p, .about-section p, .faq-answer p, .faq-answer li,
     justify-content: center;
     align-items: center;
 }
+
 .success-content {
     background: #fff;
     width: 400px;
@@ -450,27 +748,44 @@ p, .about-section p, .faq-answer p, .faq-answer li,
     padding: 20px;
     animation: fadeInScale 0.2s ease;
 }
-.success-checkmark { 
-    width: 100px; 
-    height: 100px; 
+
+/* SVG-иконка галочки */
+.success-checkmark {
+    width: 100px;
+    height: 100px;
     margin-top: 20px;
     margin-bottom: 0;
 }
+
+/* Путь галочки (анимируемый) */
 .checkmark-check {
-    transform-origin: 50% 50%; 
-    stroke-dasharray: 60; 
-    stroke-dashoffset: 60;
-    stroke: #4caf50;
+    transform-origin: 50% 50%;
+    stroke-dasharray: 60;             /* длина штриха */
+    stroke-dashoffset: 60;            /* сдвиг, чтобы линия была невидима */
+    stroke: #4caf50;                  /* зелёный цвет */
     stroke-width: 4;
     stroke-linecap: round;
     stroke-linejoin: round;
     fill: none;
     animation: stroke 0.5s cubic-bezier(0.65, 0, 0.45, 1) 0.2s forwards;
 }
-@keyframes stroke { 
-    100% { stroke-dashoffset: 0; } 
+
+/* Анимация рисования галочки (штрих отрисовывается) */
+@keyframes stroke {
+    100% { stroke-dashoffset: 0; }
 }
-.success-text { font-size: 0.875rem; color: #000000; line-height: 1.5; }
+
+.success-text {
+    font-size: 0.875rem;
+    color: #000000;
+    line-height: 1.5;
+}
+
+
+/* ============================================================
+   17. КОНТАКТЫ
+   ============================================================ */
+
 .contacts-section {
     padding: 50px 10%;
     background: rgba(249, 249, 249, 0.9);
@@ -478,18 +793,45 @@ p, .about-section p, .faq-answer p, .faq-answer li,
     position: relative;
     z-index: 1;
 }
-.contacts-grid { display: flex; flex-wrap: wrap; gap: 40px; }
-.contact-col { flex: 1; min-width: 250px; }
-.contact-col h3 { margin-top: 0; border: none; color: #000000; }
+
+.contacts-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+}
+
+.contact-col {
+    flex: 1;
+    min-width: 250px;                /* минимальная ширина колонки */
+}
+
+.contact-col h3 {
+    margin-top: 0;
+    border: none;                    /* убираем подчёркивание для этого заголовка */
+    color: #000000;
+}
+
 .contact-info p { margin: 5px 0; color: #000000; }
-.contact-info strong { display: block; margin-top: 10px; margin-bottom: 2px; color: #000000; }
+.contact-info strong {
+    display: block;                  /* чтобы каждый заголовок был на новой строке */
+    margin-top: 10px;
+    margin-bottom: 2px;
+    color: #000000;
+}
+
+
+/* ============================================================
+   18. ПОДВАЛ (FOOTER)
+   ============================================================ */
+
 .footer {
-    background-color: rgba(51, 51, 51, 0.92);
+    background-color: rgba(51, 51, 51, 0.92); /* тёмный полупрозрачный */
     color: #ffffff;
     padding: 40px 10% 20px;
     position: relative;
     z-index: 1;
 }
+
 .footer-content {
     display: flex;
     flex-wrap: wrap;
@@ -498,44 +840,69 @@ p, .about-section p, .faq-answer p, .faq-answer li,
     padding-bottom: 30px;
     border-bottom: 1px solid #555;
 }
+
 .footer-col {
-    flex: 1 1 200px;
+    flex: 1 1 200px;                 /* базовый размер 200px, может растягиваться/сжиматься */
     min-width: 180px;
 }
-.footer-col h4 { color: #ffffff; margin-top: 0; margin-bottom: 15px; font-size: 1.1rem; }
+
+.footer-col h4 {
+    color: #ffffff;
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+}
+
 .footer-col p, .footer-col ul, .footer-col li { color: #ffffff; }
-.footer-bottom { text-align: center; font-size: 0.8rem; color: #cccccc; }
+
+.footer-bottom {
+    text-align: center;
+    font-size: 0.8rem;
+    color: #cccccc;
+}
+
+
+/* ============================================================
+   19. АДАПТИВНОСТЬ (МЕДИА-ЗАПРОСЫ)
+   ============================================================ */
+
+/* ---------- ПЛАНШЕТНАЯ ВЕРСИЯ (ширина до 768px) ---------- */
 @media (max-width: 768px) {
     .hero { height: 40vh; }
     .hero-text { font-size: 1.5rem; padding: 15px; }
 }
+
+/* ---------- ПЛАНШЕТ И МЕНЬШЕ (до 1024px) ---------- */
 @media (max-width: 1024px) {
     header { padding: 15px 30px; }
     .logo { font-size: 2rem; }
     nav ul { gap: 20px; }
-    .about-section, .catalog-section, .contacts-section, .footer { 
-        padding-left: 6%; 
-        padding-right: 6%; 
+    .about-section, .catalog-section, .contacts-section, .footer {
+        padding-left: 6%;
+        padding-right: 6%;
     }
     .content-wrapper { gap: 30px; }
     .product-card { flex: 0 0 280px; padding: 15px; }
     .product-img { height: 170px; }
-    .modal-content, .loading-content, .success-content { 
-        max-width: 90%; 
-        width: 450px; 
+    .modal-content, .loading-content, .success-content {
+        max-width: 90%;
+        width: 450px;
     }
 }
+
+/* ---------- МОБИЛЬНАЯ ВЕРСИЯ (до 767px) ---------- */
 @media (max-width: 767px) {
-    header { 
+    /* Шапка остаётся горизонтальной, но элементы становятся компактнее */
+    header {
         padding: 10px 15px;
-        flex-direction: row;
+        flex-direction: row;          /* явно горизонтальная */
         flex-wrap: wrap;
         gap: 8px 15px;
     }
     .logo { font-size: 1.4rem; }
     nav ul { gap: 8px; flex-wrap: wrap; }
-    nav a { 
-        font-size: 0.625rem;
+    nav a {
+        font-size: 0.625rem;          /* 10px — по макету */
         padding: 4px 6px;
     }
     .switch-container {
@@ -545,17 +912,22 @@ p, .about-section p, .faq-answer p, .faq-answer li,
     .switch-container span {
         font-size: 0.625rem;
     }
+
     .hero { height: 35vh; }
-    .hero-text { 
-        font-size: 1.3rem; 
+    .hero-text {
+        font-size: 1.3rem;
         padding: 10px;
     }
-    .about-section, .catalog-section, .contacts-section, .footer { 
-        padding-left: 4%; 
+
+    /* Уменьшаем боковые отступы секций */
+    .about-section, .catalog-section, .contacts-section, .footer {
+        padding-left: 4%;
         padding-right: 4%;
         padding-top: 30px;
         padding-bottom: 30px;
     }
+
+    /* «О нас» — перестраиваем в одну колонку, порядок: Миссия → Ценности → FAQ */
     .content-wrapper {
         display: flex;
         flex-direction: column;
@@ -564,14 +936,18 @@ p, .about-section p, .faq-answer p, .faq-answer li,
     .mission-block { order: 1; }
     .values-block { order: 2; }
     .faq-block   { order: 3; }
+
+    /* Заголовки — 12px (по макету) */
     h3, .section-title, .product-title, .faq-question {
         font-size: 0.75rem;
         font-weight: 700;
     }
-    h3 { 
+    h3 {
         font-size: 0.75rem;
         margin-bottom: 15px;
     }
+
+    /* Основной текст (кроме карточек) — 10px (по макету) */
     .about-section p, .faq-answer p, .faq-answer li,
     .contact-info p, .contact-info strong,
     .footer-col p, .footer-col li,
@@ -582,6 +958,8 @@ p, .about-section p, .faq-answer p, .faq-answer li,
         font-size: 0.625rem;
         font-weight: 400;
     }
+
+    /* Карточки и кнопки — остаются 14px для читаемости */
     .product-desc,
     .price-block,
     .price,
@@ -591,13 +969,16 @@ p, .about-section p, .faq-answer p, .faq-answer li,
     .submit-btn {
         font-size: 0.875rem;
         font-weight: 400;
-    }   
+    }
+
     .faq-list { margin-top: 15px; }
     .values-list { margin-top: 10px; }
+
+    /* Карточки товаров — уменьшенный размер: 250×400, картинка 200×200 */
     .product-card {
-        flex: 0 0 250px;      
+        flex: 0 0 250px;
         width: 250px;
-        height: 400px;        
+        height: 400px;
         padding: 10px;
         box-sizing: border-box;
         scroll-snap-align: center;
@@ -609,20 +990,20 @@ p, .about-section p, .faq-answer p, .faq-answer li,
         width: 200px;
         height: 200px;
         object-fit: cover;
-        margin: 0 auto 10px auto;
+        margin: 0 auto 10px auto;      /* центрируем картинку */
         border-radius: 8px;
     }
     .product-title {
         height: auto;
         font-size: 0.875rem;
         margin-bottom: 5px;
-        text-align: left;
+        text-align: left;              /* текст слева — по макету */
     }
     .product-desc {
         font-size: 0.875rem;
         margin-bottom: 8px;
         text-align: left;
-        flex-grow: 0;
+        flex-grow: 0;                  /* не растягивается */
     }
     .price-block {
         font-size: 0.875rem;
@@ -632,8 +1013,10 @@ p, .about-section p, .faq-answer p, .faq-answer li,
     .order-btn {
         font-size: 0.875rem;
         padding: 8px;
-        margin-top: auto;
+        margin-top: auto;              /* кнопка прижимается к низу */
     }
+
+    /* Вкладки «Каталог/Скидки» — 12px (по макету) */
     .tab-switch {
         gap: 15px;
         margin-bottom: 20px;
@@ -643,17 +1026,19 @@ p, .about-section p, .faq-answer p, .faq-answer li,
         font-weight: 400;
         padding: 6px 15px;
     }
-    .modal-content, .loading-content, .success-content { 
-        width: 92%; 
-        padding: 20px; 
+
+    /* Модалки — меньше */
+    .modal-content, .loading-content, .success-content {
+        width: 92%;
+        padding: 20px;
         max-width: 350px;
     }
-    .loading-content { 
-        width: 280px; 
-        height: 220px; 
+    .loading-content {
+        width: 280px;
+        height: 220px;
     }
-    .success-content { 
-        width: 280px; 
+    .success-content {
+        width: 280px;
         height: 280px;
         flex-direction: column;
         justify-content: center;
@@ -663,25 +1048,29 @@ p, .about-section p, .faq-answer p, .faq-answer li,
         height: 80px;
         margin-top: 15px;
     }
-    .success-text { 
+    .success-text {
         font-size: 0.875rem;
     }
-    .dot { 
-        width: 22px; 
-        height: 22px; 
+    .dot {
+        width: 22px;
+        height: 22px;
     }
-    .close-modal { 
-        font-size: 24px; 
-        width: 28px; 
-        height: 28px; 
-        line-height: 26px; 
-        top: 8px; 
-        right: 12px; 
+    .close-modal {
+        font-size: 24px;
+        width: 28px;
+        height: 28px;
+        line-height: 26px;
+        top: 8px;
+        right: 12px;
     }
+
+    /* Контакты — одна колонка */
     .contacts-grid {
         flex-direction: column;
         gap: 20px;
     }
+
+    /* Подвал — две колонки, не складывается в одну (по вашему требованию) */
     .footer-content {
         gap: 20px;
     }
@@ -690,25 +1079,27 @@ p, .about-section p, .faq-answer p, .faq-answer li,
         min-width: 120px;
     }
 }
+
+/* ---------- ОЧЕНЬ МАЛЕНЬКИЕ ЭКРАНЫ (до 480px) ---------- */
 @media (max-width: 480px) {
     .logo { font-size: 1.2rem; }
     .hero-text { font-size: 1.0rem; }
-    nav ul { 
+    nav ul {
         gap: 5px;
         flex-wrap: wrap;
         justify-content: center;
     }
-    nav a { 
+    nav a {
         font-size: 0.6rem;
         padding: 3px 5px;
     }
     .switch-container span {
-        display: none;
+        display: none;                 /* скрываем текст переключателя, остаётся только ползунок */
     }
     .product-card {
-        flex: 0 0 200px;      
+        flex: 0 0 200px;
         width: 200px;
-        height: 360px;        
+        height: 360px;
         padding: 8px;
     }
     .product-img {
@@ -717,6 +1108,7 @@ p, .about-section p, .faq-answer p, .faq-answer li,
     }
     .footer-col {
         flex: 1 1 100%;
-        min-width: 100%;
+        min-width: 100%;               /* подвал — одна колонка */
     }
 }
+   
